@@ -1,15 +1,21 @@
 class FlatIterator:
 
     def __init__(self, list_of_list):
-        ...
+        self.list_of_list = list_of_list
 
     def __iter__(self):
-        ...
+        self.cursor = -1
+        self.list_of_list_cursor = 0
         return self
 
     def __next__(self):
-        ...
-        return item
+        self.cursor += 1
+        if self.cursor == len(self.list_of_list[self.list_of_list_cursor]):
+            self.cursor = 0
+            self.list_of_list_cursor += 1
+        if self.list_of_list_cursor == len(self.list_of_list):
+            raise StopIteration
+        return self.list_of_list[self.list_of_list_cursor][self.cursor]
 
 
 def test_1():
@@ -33,4 +39,4 @@ def test_1():
 if __name__ == '__main__':
     test_1()
 
-    
+
